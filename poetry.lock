@@ -1,0 +1,31 @@
+[[package]]
+name = "maturin"
+version = "1.5.1"
+description = "Build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+
+[package.extras]
+zig = ["ziglang (>=0.10.0,<0.11.0)"]
+patchelf = ["patchelf"]
+
+[[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.10"
+content-hash = "6bddbdf382f80562d229f38dcb498e9a986fdda4ee7f351fb7628ec9caa74e4e"
+
+[metadata.files]
+maturin = []
+tomli = []
