@@ -9,5 +9,6 @@ name = "pyrust_csv"
 crate-type = ["cdylib"]
 
 [dependencies]
+csv = "1.3.0"
 pyo3 = "0.21"
 serde = { version = "1.0.197", features = ["derive"] }

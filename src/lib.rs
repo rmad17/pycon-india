@@ -1,5 +1,14 @@
-use pyo3::prelude::*
-use std::{error::Error, io, process}
+use pyo3::prelude::PyErr;
+use pyo3::prelude::PyResult;
+use pyo3::prelude::*;
+use pyo3::pyfunction;
+use pyo3::pymodule;
+use pyo3::types::PyList;
+use pyo3::types::PyModule;
+use pyo3::wrap_pyfunction;
+use pyo3::Bound;
+
+use std::io;
 
 // Formats the sum of two numbers as string.
 // fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
@@ -7,16 +16,19 @@ use std::{error::Error, io, process}
 // }
 
 #[pyfunction]
-fn sum_as_string() -> PyAny<T> {
+fn sum_as_string(filename: String) -> PyResult {
     // Build the CSV reader and iterate over each record.
     let mut rdr = csv::Reader::from_reader(io::stdin());
-    for result in rdr.records() {
+    let mut records: Vec<String> = vec![String::new(); 126];
+    for (index, result) in rdr.records().enumerate() {
+        // for result in rdr.records() {
         // The iterator yields Result<StringRecord, Error>, so we check the
         // error here.
         let record = result;
         println!("{:?}", record);
+        records.insert(index, result);
     }
-    Ok((rdr.records()))
+    Ok(records);
 }
 
 /// A Python module implemented in Rust. The name of this function must match
